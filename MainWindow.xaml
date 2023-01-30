@@ -1,0 +1,65 @@
+﻿<Window x:Class="Analyzer_CV.MainWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Analyzer_CV" xmlns:Interactivity="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DocumentViewer x:Name="documentViewer1" Margin="10" Grid.RowSpan="2" Document="{Binding FixedDocument, Mode=TwoWay}">
+           
+        </DocumentViewer >
+        <Border Grid.Column="1" Grid.RowSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition />
+                    <RowDefinition Height="0.8*"/>
+                </Grid.RowDefinitions>
+                <StackPanel >
+                    <TextBox x:Name="tbSFolder" TextWrapping="Wrap" Margin="5 10 8 5"  Foreground="Gray" Text="{Binding Path, Mode=TwoWay}"/>
+                    <Button x:Name="btSearch" Content="Search" Margin="5"  Foreground="Gray" Background="Azure" Command="{Binding searchFiles , Mode=TwoWay}"/>
+                    <Button x:Name="btLoad" Grid.Row="0" Margin="5" Content="Load" Command="{Binding  loadAllResume, Mode=TwoWay}"  Foreground="Gray" Background="Azure" />
+                </StackPanel>
+                <ListView x:Name="lvResume" Grid.Row="1" Margin="5 0 8 5" SelectionMode="Multiple" ItemsSource="{Binding Files,Mode=TwoWay}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" >
+                </ListView>
+                
+                <Border Grid.Column="1" Grid.Row="2" Margin="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <RadioButton HorizontalAlignment="Center" x:Name="rbExp"  CommandParameter="rbExp" Command="{Binding selectResult, Mode=TwoWay}"/>
+                        <RadioButton Grid.Row="1" HorizontalAlignment="Center" x:Name="rbLowExp" CommandParameter="rbLowExp" Command="{Binding selectResult, Mode=TwoWay}"/>
+                        <RadioButton Grid.Row="2" HorizontalAlignment="Center" x:Name="rbHSalary" CommandParameter="rbHSalary" Command="{Binding selectResult, Mode=TwoWay}"/>
+                        <RadioButton Grid.Row="3" HorizontalAlignment="Center" x:Name="rbLSalary"  CommandParameter="rbLSalary" Command="{Binding selectResult, Mode=TwoWay}"/>
+                        <Label Grid.Column="1" Content="The most experienced candidate" FontSize="11"/>
+                        <Label Grid.Column="1"  Grid.Row="1" Content="The most inexperienced candidate" FontSize="11"  VerticalAlignment="Top"/>
+                        <Label Grid.Column="1"  Grid.Row="2" Content="The lowest salary requirement." FontSize="11"  VerticalAlignment="Top"/>
+                        <Label Grid.Column="1"  Grid.Row="3" Content="The highest salary requirements" FontSize="11" VerticalAlignment="Top"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
